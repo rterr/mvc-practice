@@ -42,18 +42,15 @@ var QUESTIONS = [
     }
 ];
 
-
-
 var Model = function(){
     this.score = 0;
     this.questionIndex = 1;
-
+    this.onChange = null;
 };
-
 
 Model.prototype.questionChecker(choice) = {
     if (question.correct === choice) {
-        this.score = score++
+        this.setScore()
     }
 
     if (questionIndex + 1 < QUESTIONS.length) {
@@ -63,6 +60,9 @@ Model.prototype.questionChecker(choice) = {
         showResults();
     }
 };
+
+Model.prototype.setScore = function(scoreUp) {
+    this.score = value + scoreUp
 
 
 

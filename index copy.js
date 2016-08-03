@@ -44,7 +44,7 @@ var QUESTIONS = [
 
 var Model = function(){
     this.score = 0;
-    this.questionIndex = 1;
+    this.questionIndex = 0;
     this.onChange = null;
 };
 

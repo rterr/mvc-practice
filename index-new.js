@@ -81,24 +81,22 @@ Model.prototype.choiceReturner = function() {
     //Link to updateFieldView??
 }
 
-var myModel = new Model();
-
-myModel.showQuestion();
-
 
 //VIEW
-var View = function(questionTextSelector, choicesTextSelector, qTotalSelector, qCurrentSelector, scoreSelector, restartButtonSelector, resultsPage){
+var View = function(questionTextSelector, choicesTextSelector, qTotalSelector, qCurrentSelector, scoreSelector, resultsPage, restartButtonSelector){
     this.questionTextField = $(questionTextSelector);
     this.choicesTextField = $(choicesTextSelector);
     this.qTotalField = $(qTotalSelector);
     this.qCurrentField = $(qCurrentSelector);
     this.scoreField = $(scoreSelector);
-    this.resultsPage = $(resultsPage)
+    this.resultsPage = $(resultsPage);
     this.restartButtonName = $(restartButtonSelector);
 };
 
 View.prototype.updateFieldView = function() {
-    this.questionTextField.text(/*?currentQuestion.qText*/);
+    this.questionTextField.text(currentQuestion.qText);
+    console.log('I\'m updateFieldView!');
+    console.log(this.questionTextField);
     //Link to choiceReturner??
     this.qCurrentField.text(/*questionIndex*/);
     this.scoreField.text(/*score*/);
@@ -111,6 +109,12 @@ View.prototype.showResults = function() {
 //Send score total
 };
 
+View.prototype.getAnswer = function() {
+    this.choicesTextField.on('click','button', function(){
+        this.choice = event.target.button
+    })
+}
+
 View.prototype.newGame = function(){
     this.score = 0;
     this.questionIndex = 0;
@@ -119,11 +123,22 @@ View.prototype.newGame = function(){
 //Send text and choices of index[0] (first question)
 };
 
-var myView = new Model ('.question-text','.question-choices')
 
 
 //CONTROLLER 
+var Controller = function(){
+    
+}
 
+///
+
+$(document).ready(function() {
+
+var myModel = new Model();
+var myView = new View ('.question-text','.question-choices','.questions-total',".question-current","score",".results-page",".restart-button")
+var myController = new Controller();
+
+});
 //1. Establish what we have on the DOM [DONE]
 //2. Sending the question text and the choices text AND show current question number [DONE]
 //3. Grabbing the choice that was clicked on

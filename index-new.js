@@ -50,7 +50,7 @@ var Model = function(){
 };
 
 // Model.prototype.showQuestion =  function() {
-//     console.log(this.currentQuestion.text)
+//     console.log(this.currentQuestion.qText)
 // }
 
 Model.prototype.questionChecker = function(choice) {
@@ -61,7 +61,7 @@ Model.prototype.questionChecker = function(choice) {
 }
 
 Model.prototype.increaseScore = function(scoreValue) {
-    this.score = value + scoreValue;}
+    this.score = this.score + scoreValue;}
 
 Model.prototype.nextQuestion = function() {
     if (this.questionIndex + 1 < questionArray.length) {
@@ -70,16 +70,17 @@ Model.prototype.nextQuestion = function() {
         // showQuestion();
     }
     else {
-        showResults();
+        showResults(); // * this is a little view-y
+        // trigger endof game t
     }
 };
 
-Model.prototype.choiceReturner = function() {
-    for (var i = 0; i < this.currentQuestion.choices.length; i++){
-        return this.currentQuestion.choices[i];
-    }
-    //Link to updateFieldView??
-}
+// BAD Model.prototype.choiceReturner = function() { // *
+//     for (var i = 0; i < this.currentQuestion.choices.length; i++){
+//          this.currentQuestion.choices[i];
+//     }
+//     //Link to updateFieldView??
+// }
 
 
 //VIEW
@@ -93,8 +94,8 @@ var View = function(questionTextSelector, choicesTextSelector, qTotalSelector, q
     this.restartButtonName = $(restartButtonSelector);
 };
 
-View.prototype.updateFieldView = function() {
-    this.questionTextField.text(currentQuestion.qText);
+View.prototype.updateFieldView = function(q) {
+    this.questionTextField.text(currentQuestion.qText); // *
     console.log('I\'m updateFieldView!');
     console.log(this.questionTextField);
     //Link to choiceReturner??

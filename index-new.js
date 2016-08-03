@@ -1,7 +1,7 @@
 //MODEL
 var questionArray = [
     {
-        text: 'First question!!',
+        qText: 'First question!!',
         choices: [
             'Option one',
             'Option two',
@@ -11,7 +11,7 @@ var questionArray = [
         correct: 0
     },
     {
-        text: 'Second question!!',
+        qText: 'Second question!!',
         choices: [
             'Option one',
             'Option two',
@@ -21,7 +21,7 @@ var questionArray = [
         correct: 1
     },
     {
-        text: 'Third question!!',
+        qText: 'Third question!!',
         choices: [
             'Option one',
             'Option two',
@@ -31,7 +31,7 @@ var questionArray = [
         correct: 2
     },
     {
-        text: 'Fourth question!!',
+        qText: 'Fourth question!!',
         choices: [
             'Option one',
             'Option two',
@@ -87,28 +87,34 @@ myModel.showQuestion();
 
 
 //VIEW
-var View = function(questionTextSelector, choicesTextSelector, qTotalSelector, qCurrentSelector, scoreSelector, restartButtonSelector){
+var View = function(questionTextSelector, choicesTextSelector, qTotalSelector, qCurrentSelector, scoreSelector, restartButtonSelector, resultsPage){
     this.questionTextField = $(questionTextSelector);
     this.choicesTextField = $(choicesTextSelector);
     this.qTotalField = $(qTotalSelector);
     this.qCurrentField = $(qCurrentSelector);
     this.scoreField = $(scoreSelector);
+    this.resultsPage = $(resultsPage)
     this.restartButtonName = $(restartButtonSelector);
 };
 
 View.prototype.updateFieldView = function() {
-    this.questionTextField.text(/*?currentQuestion.text*/);
+    this.questionTextField.text(/*?currentQuestion.qText*/);
     //Link to choiceReturner??
     this.qCurrentField.text(/*questionIndex*/);
     this.scoreField.text(/*score*/);
 };
 
 View.prototype.showResults = function() {
+    this.resultsPage.toggle(true);
+//Need to link this to .nextQuestion
 //Display results-page div
 //Send score total
 };
 
 View.prototype.newGame = function(){
+    this.score = 0;
+    this.questionIndex = 0;
+    this.resultsPage.toggle(false);
 //Reset question index, reset score
 //Send text and choices of index[0] (first question)
 };
@@ -116,11 +122,12 @@ View.prototype.newGame = function(){
 var myView = new Model ('.question-text','.question-choices')
 
 
+//CONTROLLER 
 
-//1. Establish what we have on the DOM
-//2. Sending the question text and the choices text AND show current question number
+//1. Establish what we have on the DOM [DONE]
+//2. Sending the question text and the choices text AND show current question number [DONE]
 //3. Grabbing the choice that was clicked on
-//4. When there are no more questions, show results (score) and restart button
+//4. When there are no more questions, show results (score) and restart button [DONE]
 //5. Restart button will go back to starting state (score, question index number)
 
 /* //CONTROLLER

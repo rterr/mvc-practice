@@ -2,7 +2,7 @@
 var questionArray = [
     {
         text: 'First question!!',
-        answers: [
+        choices: [
             'Option one',
             'Option two',
             'Option three',
@@ -12,7 +12,7 @@ var questionArray = [
     },
     {
         text: 'Second question!!',
-        answers: [
+        choices: [
             'Option one',
             'Option two',
             'Option three',
@@ -22,7 +22,7 @@ var questionArray = [
     },
     {
         text: 'Third question!!',
-        answers: [
+        choices: [
             'Option one',
             'Option two',
             'Option three',
@@ -32,7 +32,7 @@ var questionArray = [
     },
     {
         text: 'Fourth question!!',
-        answers: [
+        choices: [
             'Option one',
             'Option two',
             'Option three',
@@ -74,29 +74,56 @@ Model.prototype.nextQuestion = function() {
     }
 };
 
+Model.prototype.choiceReturner = function() {
+    for (var i = 0; i < this.currentQuestion.choices.length; i++){
+        return this.currentQuestion.choices[i];
+    }
+    //Link to updateFieldView??
+}
+
 var myModel = new Model();
 
 myModel.showQuestion();
 
-//VIEW 
 
-
-
-
-
-
-
-/* //VIEW
-var View = function(){
-
+//VIEW
+var View = function(questionTextSelector, choicesTextSelector, qTotalSelector, qCurrentSelector, scoreSelector, restartButtonSelector){
+    this.questionTextField = $(questionTextSelector);
+    this.choicesTextField = $(choicesTextSelector);
+    this.qTotalField = $(qTotalSelector);
+    this.qCurrentField = $(qCurrentSelector);
+    this.scoreField = $(scoreSelector);
+    this.restartButtonName = $(restartButtonSelector);
 };
 
-View.prototype.choiceGrabber() = {
+View.prototype.updateFieldView = function() {
+    this.questionTextField.text(/*?currentQuestion.text*/);
+    //Link to choiceReturner??
+    this.qCurrentField.text(/*questionIndex*/);
+    this.scoreField.text(/*score*/);
+};
 
-}
+View.prototype.showResults = function() {
+//Display results-page div
+//Send score total
+};
+
+View.prototype.newGame = function(){
+//Reset question index, reset score
+//Send text and choices of index[0] (first question)
+};
+
+var myView = new Model ('.question-text','.question-choices')
 
 
-//CONTROLLER
+
+//1. Establish what we have on the DOM
+//2. Sending the question text and the choices text AND show current question number
+//3. Grabbing the choice that was clicked on
+//4. When there are no more questions, show results (score) and restart button
+//5. Restart button will go back to starting state (score, question index number)
+
+/* //CONTROLLER
 
 var Controller = function(){
 

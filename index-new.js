@@ -45,13 +45,13 @@ var questionArray = [
 var Model = function(){
     this.score = 0;
     this.questionIndex = 0;
-    this.onChange = null;
+    // this.onChange = null;
     this.currentQuestion = questionArray[this.questionIndex];
 };
 
-Model.prototype.showQuestion =  function() {
-    console.log(this.currentQuestion.text);
-}
+// Model.prototype.showQuestion =  function() {
+//     console.log(this.currentQuestion.text)
+// }
 
 Model.prototype.questionChecker = function(choice) {
     if (this.currentQuestion.correct === choice) {
@@ -64,10 +64,10 @@ Model.prototype.increaseScore = function(scoreValue) {
     this.score = value + scoreValue;}
 
 Model.prototype.nextQuestion = function() {
-
-    if (this.questionIndex + 1 < questionArray.length - 1) {
+    if (this.questionIndex + 1 < questionArray.length) {
+        //if questionIndex + 1 = within the length of the array then increment.
         questionIndex++;
-        showQuestion(questionIndex);
+        // showQuestion();
     }
     else {
         showResults();
@@ -77,6 +77,12 @@ Model.prototype.nextQuestion = function() {
 var myModel = new Model();
 
 myModel.showQuestion();
+
+//VIEW 
+
+
+
+
 
 
 

@@ -92,15 +92,14 @@ var View = function(questionTextSelector, choicesTextSelector, qTotalSelector, q
     this.scoreField = $(scoreSelector);
     this.resultsPage = $(resultsPage);
     this.restartButtonName = $(restartButtonSelector);
+    this.choicesIndex = 0;
+    this.currentArray = questionArray[this.choicesIndex];
 };
 
-View.prototype.updateFieldView = function(q) {
-    this.questionTextField.text(currentQuestion.qText); // *
-    console.log('I\'m updateFieldView!');
-    console.log(this.questionTextField);
-    //Link to choiceReturner??
-    this.qCurrentField.text(/*questionIndex*/);
-    this.scoreField.text(/*score*/);
+View.prototype.updateFieldView = function(qTextParam, qCurrentParam, scoreParam) {
+    this.questionTextField.text(qTextParam); // *
+    this.qCurrentField.text(qCurrentParam);
+    this.scoreField.text(scoreParam);
 };
 
 View.prototype.showResults = function() {
@@ -110,6 +109,15 @@ View.prototype.showResults = function() {
 //Send score total
 };
 
+View.prototype.showChoices = function() {
+    this.currentArray = questionArray[0].choices;
+    console.log(this.currentArray);
+
+    // for (var i = 0; i < this.currentQuestion.choices.length; i++){
+    //      this.currentQuestion.choices[i];
+    // }
+
+}
 View.prototype.getAnswer = function() {
     this.choicesTextField.on('click','button', function(){
         this.choice = event.target.button
@@ -138,6 +146,9 @@ $(document).ready(function() {
 var myModel = new Model();
 var myView = new View ('.question-text','.question-choices','.questions-total',".question-current","score",".results-page",".restart-button")
 var myController = new Controller();
+
+
+myView.showChoices();
 
 });
 //1. Establish what we have on the DOM [DONE]
